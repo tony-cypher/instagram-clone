@@ -53,27 +53,11 @@
             <p>OR</p>
 
             <form action="" method="POST" class="form-group">
-              {% csrf_token %}
-              <input
-                class="form-control my-1"
-                type="text"
-                placeholder="Mobile Number or Email"
-              />
-              <input
-                class="form-control my-2"
-                type="text"
-                placeholder="Full Name"
-              />
-              <input
-                class="form-control my-2"
-                type="text"
-                placeholder="Username"
-              />
-              <input
-                class="form-control my-2"
-                type="password"
-                placeholder="Password"
-              />
+              {% csrf_token %} {{ user_form.username }} {{ user_form.email }}
+              <!-- pass -->
+              {{ user_form.first_name }} {{ user_form.password1}}
+              <!-- pass -->
+              {{ user_form.password2}}
               <button type="submit" class="btn btn-primary my-3">
                 Sign up
               </button>

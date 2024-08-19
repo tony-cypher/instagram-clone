@@ -6,7 +6,7 @@ from .models import *
 from .forms import *
 # Create your views here.
 
-
+@login_required
 def feed(request):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -33,10 +33,3 @@ def post_create(request):
     else:
         form = PostCreateForm(data=request.GET)
     return render(request, 'insta/create_post.html', {'form':form})
-
-class ProfilePage(TemplateView):
-    template_name = 'insta/profile.html'
-
-
-class UserPage(TemplateView):
-    template_name = 'insta/user.html'

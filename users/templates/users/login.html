@@ -8,17 +8,11 @@
       <div class="log1">
         <h1>Instagram</h1>
         <form action="" method="POST" class="form-group">
-          {% csrf_token %}
-          <input
-            class="form-control my-1"
-            type="text"
-            placeholder="Phone number, username, or email"
-          />
-          <input
-            class="form-control my-2"
-            type="password"
-            placeholder="Password"
-          />
+          {% load widget_tweaks %} {% csrf_token %}
+          <!-- username -->
+          {{ form.username |add_class:"form-control my-1"|attr:"placeholder:Username" }}
+          <!-- pass -->
+          {{ form.password |add_class:'form-control my-2'|attr:"placeholder:Password" }}
           <button type="submit" class="btn btn-primary my-3">Log in</button>
         </form>
         <p>OR</p>
@@ -32,9 +26,7 @@
       <div class="log2">
         <div class="cols">
           <p class="item1">
-            Don't have an account?<span class="mx-1"
-              ><a href="{% url 'signup' %}" class="item2">Sign up</a></span
-            >
+            Don't have an account?<span class="mx-1"><a href="{% url 'register' %}" class="item2">Sign up</a></span>
           </p>
         </div>
       </div>
