@@ -1,0 +1,22 @@
+{% extends 'insta/base.html' %} {% load static %} {% block content %}
+<main id="main">
+  <section id="profile">
+    <!--===================== PROFILE SECTION ========================-->
+    <div class="container profile">
+      <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" />
+      <div class="col-lg-6">
+        <a href="#">__cipher__</a>
+        <button class="btn btn-outline-primary">Edit Profile</button>
+        <button class="btn btn-outline-primary">View archive</button>
+      </div>
+      <div>
+        <a>0 posts</a>
+        <a href="#">13 followers</a>
+        <a href="#">53 following</a>
+        <p>Anthony Ifeanyi</p>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
+</main>

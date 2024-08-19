@@ -1,0 +1,45 @@
+{% extends 'users/register.html' %} {% load static %} {% block content %}
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col img">
+      <img src="{% static 'assets/img/login-img.png' %}" alt="" />
+    </div>
+    <div class="col">
+      <div class="log1">
+        <h1>Instagram</h1>
+        <form action="" method="POST" class="form-group">
+          {% csrf_token %}
+          <input
+            class="form-control my-1"
+            type="text"
+            placeholder="Phone number, username, or email"
+          />
+          <input
+            class="form-control my-2"
+            type="password"
+            placeholder="Password"
+          />
+          <button type="submit" class="btn btn-primary my-3">Log in</button>
+        </form>
+        <p>OR</p>
+
+        <h6 class="my-2">
+          <i class="bi bi-facebook mx-2"></i> Log in with Facebook
+        </h6>
+
+        <p class="forgot my-3">Forgot password?</p>
+      </div>
+      <div class="log2">
+        <div class="cols">
+          <p class="item1">
+            Don't have an account?<span class="mx-1"
+              ><a href="{% url 'signup' %}" class="item2">Sign up</a></span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
