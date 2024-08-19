@@ -1,0 +1,24 @@
+{% extends 'insta/base.html' %} {% block content %}
+
+<div class="container my-5">
+  <h2 class="text-center m-4">Create Post</h2>
+  <form class="row g-3" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-12">
+      <label for="" class="form-label">Title</label>
+      {{ form.title }}
+    </div>
+    <div class="col-12">
+      <label for="" class="form-label">Caption</label>
+      {{ form.caption }}
+    </div>
+    <div class="col-12">
+      <label for="" class="form-label">Post Image</label>
+      {{ form.image }}
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Create Post</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

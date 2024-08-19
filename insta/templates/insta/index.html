@@ -9,7 +9,7 @@
           <img src="#" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
-              <a href="{% url 'user' %}" class="date">__cipher__</a>
+              <a href="" class="date">__cipher__</a>
             </div>
             <span>Anthony Ifeanyi</span>
           </div>
@@ -26,11 +26,7 @@
       </li>
       <li>
         <div class="d-flex align-items-center my-3">
-          <img
-            src="{% static 'assets/img/profile-img.jpg' %}"
-            alt=""
-            class="img-fluid me-3"
-          />
+          <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
               <span class="date">mascunet</span>
@@ -43,11 +39,7 @@
 
       <li>
         <div class="d-flex align-items-center my-3">
-          <img
-            src="{% static 'assets/img/profile-img.jpg' %}"
-            alt=""
-            class="img-fluid me-3"
-          />
+          <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
               <span class="date">lani_boy</span>
@@ -60,11 +52,7 @@
 
       <li>
         <div class="d-flex align-items-center my-3">
-          <img
-            src="{% static 'assets/img/profile-img.jpg' %}"
-            alt=""
-            class="img-fluid me-3"
-          />
+          <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
               <span class="date">Xom_crusiers</span>
@@ -77,11 +65,7 @@
 
       <li>
         <div class="d-flex align-items-center my-3">
-          <img
-            src="{% static 'assets/img/profile-img.jpg' %}"
-            alt=""
-            class="img-fluid me-3"
-          />
+          <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
               <span class="date">natta_nille</span>
@@ -99,40 +83,22 @@
 <main id="main">
   <!-- ======= About Section ======= -->
   <section id="about" class="about col-lg-6">
-    <div class="container">
-      <div class="profile my-3">
-        <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" />
-        <a href="#">tundednut</a> . 2h
-      </div>
-      <div class="container-fliud post">
-        <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" />
-      </div>
-      <div class="my-3">
-        <i class="bi bi-heart mx-2"></i>
-        <i class="bi bi-search"></i>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
-          omnis iure at ducimus ut ......
-        </p>
-      </div>
-    </div>
+    {% for post in posts %}
     <div class="container my-5">
       <div class="profile my-3">
-        <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" />
-        <a href="#">tundednut</a> . 2h
+        <img src="{{ post.user.profile.profile_img.url}}" alt="" />
+        <a href="#">{{ post.user.username }}</a> . 2h
       </div>
       <div class="container-fliud post">
-        <img src="{% static 'assets/img/profile-img.jpg' %}" alt="" />
+        <img src="{{ post.image.url}}" alt="" />
       </div>
       <div class="my-3">
         <i class="bi bi-heart mx-2"></i>
         <i class="bi bi-search"></i>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum
-          omnis iure at ducimus ut ......
-        </p>
+        <p>{{ post.caption }}</p>
       </div>
     </div>
+    {% endfor %}
   </section>
   <!-- End About Section -->
 </main>
