@@ -2,10 +2,10 @@
 
 <div class="container my-5">
   <h2 class="text-center m-4">Create Post</h2>
-  <form class="row g-3" method="POST" enctype="multipart/form-data">
+  <form class="row g-3 create-form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="col-12">
-      <label for="" class="form-label">Title</label>
+      <label for="" class="form-label text-white">Title</label>
       {{ form.title }}
     </div>
     <div class="col-12">
@@ -17,7 +17,7 @@
       {{ form.image }}
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Create Post</button>
+      <button type="submit" class="btn btn-light">Create Post</button>
     </div>
   </form>
 </div>

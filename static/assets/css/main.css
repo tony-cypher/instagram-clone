@@ -383,3 +383,8 @@ section {
 .user {
   padding: 40px;
 }
+
+/* CREATE POST */
+.create-form {
+  margin-left: 200px;
+}

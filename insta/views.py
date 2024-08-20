@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
@@ -30,6 +30,7 @@ def post_create(request):
             new_item = form.save(commit=False)
             new_item.user = request.user
             new_item.save()
+            return redirect('home')
     else:
         form = PostCreateForm(data=request.GET)
     return render(request, 'insta/create_post.html', {'form':form})

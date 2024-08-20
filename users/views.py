@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from insta.models import Post
 
 # Create your views here.
-def login(request):
-    return render(request, 'users/login.html')
 
 def register(request):
     if request.method == 'POST':
@@ -18,3 +17,9 @@ def register(request):
     else:
         user_form = RegistrationForm()
         return render(request, 'users/register.html', {'user_form':user_form})
+    
+def index(request):
+    current_user = request.user
+    posts = Post.objects.filter(user=current_user)
+    profile = Profile.objects.filter(user=current_user).first()
+    return render(request, 'users/index.html', {'posts':posts, 'profile':profile})
