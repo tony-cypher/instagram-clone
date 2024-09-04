@@ -9,7 +9,7 @@
           <img src="#" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
-              <a href="{% url 'profile' %}" class="date">__cipher__</a>
+              <a href="{% url 'profile' %}" class="date">{{ request.user }}</a>
             </div>
             <span>Anthony Ifeanyi</span>
           </div>
@@ -24,57 +24,20 @@
           <a href="#" class="mx-4">See All</a>
         </div>
       </li>
+      {% for user in users %} {% if user.user != request.user %}
       <li>
         <div class="d-flex align-items-center my-3">
           <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
-              <span class="date">mascunet</span>
+              <span id="test" class="date">{{ user.user }}</span>
             </div>
-            <span>Suggested for you</span>
+            <span>Suggested {{request.user}}</span>
           </div>
           <a href="#" class="mx-4">Follow</a>
         </div>
       </li>
-
-      <li>
-        <div class="d-flex align-items-center my-3">
-          <img src="" alt="" class="img-fluid me-3" />
-          <div class="suggest">
-            <div class="post-meta d-block suggest-bold">
-              <span class="date">lani_boy</span>
-            </div>
-            <span>Suggested for you</span>
-          </div>
-          <a href="#" class="mx-4">Follow</a>
-        </div>
-      </li>
-
-      <li>
-        <div class="d-flex align-items-center my-3">
-          <img src="" alt="" class="img-fluid me-3" />
-          <div class="suggest">
-            <div class="post-meta d-block suggest-bold">
-              <span class="date">Xom_crusiers</span>
-            </div>
-            <span>Suggested for you</span>
-          </div>
-          <a href="#" class="mx-4">Follow</a>
-        </div>
-      </li>
-
-      <li>
-        <div class="d-flex align-items-center my-3">
-          <img src="" alt="" class="img-fluid me-3" />
-          <div class="suggest">
-            <div class="post-meta d-block suggest-bold">
-              <span class="date">natta_nille</span>
-            </div>
-            <span>Suggested for you</span>
-          </div>
-          <a href="#" class="mx-4">Follow</a>
-        </div>
-      </li>
+      {% endif %} {% endfor %}
     </ul>
   </div>
 </div>

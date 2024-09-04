@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .models import *
 from .forms import *
+from users.models import Profile
 # Create your views here.
 
 @login_required
@@ -19,8 +20,9 @@ def feed(request):
         comment_form = CommentForm()
     posts = Post.objects.all()
     logged_user = request.user
+    users = Profile.objects.all()
 
-    return render(request, 'insta/index.html', {'posts':posts, 'logged_user':logged_user, 'comment_form':comment_form})
+    return render(request, 'insta/index.html', {'posts':posts, 'logged_user':logged_user, 'comment_form':comment_form, 'users': users})
 
 @login_required
 def post_create(request):
