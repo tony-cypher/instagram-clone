@@ -388,3 +388,8 @@ section {
 .create-form {
   margin-left: 200px;
 }
+
+.img_url {
+  height: 300px;
+  width: 300px;
+}

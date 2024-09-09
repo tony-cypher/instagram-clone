@@ -36,9 +36,19 @@
       </div>
     </div>
     <hr />
+
+    <!---- ========================= POSTS SECTION ====================== -->
+    <div class="container">
+      <div class="row row-cols-3">
+        {% for post in posts %}
+        <div class="col pt-5">
+          <a href="#"
+            ><img class="img_url" src="{{ post.image.url }}" alt=""
+          /></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </main>
-
-<!---- ========================= POSTS SECTION ====================== -->
-
 {% endblock %}
