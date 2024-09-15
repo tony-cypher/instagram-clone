@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
@@ -17,7 +18,8 @@ def register(request):
     else:
         user_form = RegistrationForm()
         return render(request, 'users/register.html', {'user_form':user_form})
-    
+
+@login_required
 def index(request):
     current_user = request.user
     posts = Post.objects.filter(user=current_user)

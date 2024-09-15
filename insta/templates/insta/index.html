@@ -52,13 +52,32 @@
         <img src="{{ post.user.profile.profile_img.url }}" alt="" />
         <a href="#">{{ post.user.username }}</a> . 2h
       </div>
-      <div class="container-fliud post">
+      <div class="container-fliud post-img">
         <img src="{{ post.image.url}}" alt="" />
       </div>
-      <div class="my-3">
-        <i class="bi bi-heart mx-2"></i>
-        <i class="bi bi-search"></i>
-        <p>{{ post.caption }}</p>
+      <div class="my-3 post">
+        <div class="icon-wrapper">
+          <i class="bi bi-heart mx-2"></i>
+          <i class="bi bi-search mx-2"></i>
+          <i class="bi bi-chat-left chat-icon"></i>
+        </div>
+        <div class="comment-section hidden">
+          <div class="comments">
+            <div class="comment"><p>Great post!</p></div>
+            <div class="comment"><p>Awesome picture!</p></div>
+            <div class="comment"><p>I love this!</p></div>
+          </div>
+          <div class="comment-input">
+            <input
+              type="text"
+              class="commentText"
+              placeholder="Add a comment..."
+            />
+            <button class="postComment">Post</button>
+          </div>
+        </div>
+
+        <p>{{ post.caption|truncatewords:8 }}</p>
       </div>
     </div>
     {% endfor %}
