@@ -67,9 +67,14 @@
         </div>
         <div class="comment-section hidden">
           <div class="comments">
-            <div class="comment"><p>Great post!</p></div>
-            <div class="comment"><p>Awesome picture!</p></div>
-            <div class="comment"><p>I love this!</p></div>
+            {% for comment in post.comment.all %}
+            <div class="comment">
+              <a href="{% url 'profile' comment.posted_by.id %}"
+                >{{ comment.posted_by }}
+              </a>
+              <p>{{ comment.body }}</p>
+            </div>
+            {% endfor %}
           </div>
           <div class="comment-input">
             <input

@@ -25,7 +25,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comment')
-    posted_by = models.CharField(max_length=100)
+    posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     body = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now=True)
 

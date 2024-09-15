@@ -42,29 +42,30 @@
       <div class="row row-cols-3">
         {% for post in posts %}
         <div class="col pt-5">
-          <div>
-            <img class="img_url" src="{{ post.image.url }}" alt="" />
-            <i class="bi bi-heart mx-2"></i>
-            <i class="bi bi-search mx-2"></i>
-            <i class="bi bi-chat">
-              <div class="comment-section hidden">
-                <div class="comments">
-                  <div class="comment"><p>Great post!</p></div>
-                  <div class="comment"><p>Awesome picture!</p></div>
-                  <div class="comment"><p>I love this!</p></div>
-                </div>
-                <div class="comment-input">
-                  <input
-                    type="text"
-                    id="commentText"
-                    placeholder="Add a comment..."
-                  />
-                  <button id="postComment">Post</button>
-                </div>
+          <img class="img_url" src="{{ post.image.url }}" alt="" />
+          <div class="my-3 post">
+            <div class="icon-wrapper">
+              <i class="bi bi-heart mx-2"></i>
+              <i class="bi bi-chat-left chat-icon"></i>
+            </div>
+            <div class="comment-section hidden">
+              <div class="comments">
+                <div class="comment"><p>Great post!</p></div>
+                <div class="comment"><p>Awesome picture!</p></div>
+                <div class="comment"><p>I love this!</p></div>
               </div>
-            </i>
+              <div class="comment-input">
+                <input
+                  type="text"
+                  class="commentText"
+                  placeholder="Add a comment..."
+                />
+                <button class="postComment">Post</button>
+              </div>
+            </div>
+
+            <p>{{ post.caption|truncatewords:8 }}</p>
           </div>
-          <p>{{ post.caption|truncatewords:8 }}</p>
         </div>
         {% endfor %}
       </div>
