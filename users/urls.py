@@ -4,10 +4,9 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='profile'),
+    path('<int:id>/profile/', views.index, name='profile'),
+    path('<int:id>/post', views.post_user, name='post_user'),
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
-
-

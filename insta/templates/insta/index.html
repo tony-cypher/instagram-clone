@@ -9,7 +9,9 @@
           <img src="#" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
-              <a href="{% url 'profile' %}" class="date">{{ request.user }}</a>
+              <a href="{% url 'profile' request.user.id %}" class="date"
+                >{{ request.user }}</a
+              >
             </div>
             <span>Anthony Ifeanyi</span>
           </div>
@@ -30,7 +32,9 @@
           <img src="" alt="" class="img-fluid me-3" />
           <div class="suggest">
             <div class="post-meta d-block suggest-bold">
-              <span id="test" class="date">{{ user.user }}</span>
+              <a href="{% url 'profile' user.id %}"
+                ><span id="test" class="date">{{ user.user }}</span></a
+              >
             </div>
             <span>Suggested {{request.user}}</span>
           </div>
@@ -50,7 +54,8 @@
     <div class="container my-5">
       <div class="profile my-3">
         <img src="{{ post.user.profile.profile_img.url }}" alt="" />
-        <a href="#">{{ post.user.username }}</a> . 2h
+        <a href="{% url 'post_user' post.id %}">{{ post.user.username }}</a>
+        . 2h
       </div>
       <div class="container-fliud post-img">
         <img src="{{ post.image.url}}" alt="" />
@@ -58,7 +63,6 @@
       <div class="my-3 post">
         <div class="icon-wrapper">
           <i class="bi bi-heart mx-2"></i>
-          <i class="bi bi-search mx-2"></i>
           <i class="bi bi-chat-left chat-icon"></i>
         </div>
         <div class="comment-section hidden">

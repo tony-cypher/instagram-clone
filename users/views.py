@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
 from insta.models import Post
@@ -20,8 +20,15 @@ def register(request):
         return render(request, 'users/register.html', {'user_form':user_form})
 
 @login_required
-def index(request):
-    current_user = request.user
+def index(request, id):
+    current_user = Profile.objects.get(id=id).user
     posts = Post.objects.filter(user=current_user)
     profile = Profile.objects.filter(user=current_user).first()
     return render(request, 'users/index.html', {'posts':posts, 'profile':profile})
+
+def post_user(request, id):
+    post = Post.objects.get(id=id)
+    user = post.user
+    posts = Post.objects.filter(user=user)
+    profile = Profile.objects.filter(user=user).first()
+    return render(request, 'users/index.html', {'posts': posts, 'profile':profile})

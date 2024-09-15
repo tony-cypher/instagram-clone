@@ -95,7 +95,7 @@
             </li>
 
             <li>
-              <a href="{% url 'profile' %}" class="nav-link"
+              <a href="{% url 'profile' request.user.id %}" class="nav-link"
                 ><img
                   src="{{ request.user.profile.profile_img.url }}"
                   alt=""
