@@ -457,8 +457,18 @@ section {
   align-items: center;
 }
 
+.comment strong {
+  margin-right: 5px;
+}
+
 .comment p {
   margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.comment a {
+  width: 50px;
+  font-size: small;
 }
 
 .comment-input {

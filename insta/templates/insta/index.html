@@ -70,7 +70,7 @@
             {% for comment in post.comment.all %}
             <div class="comment">
               <a href="{% url 'profile' comment.posted_by.id %}"
-                >{{ comment.posted_by }}
+                ><i>{{ comment.posted_by }}</i>
               </a>
               <p>{{ comment.body }}</p>
             </div>
