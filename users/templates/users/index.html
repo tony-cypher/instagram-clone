@@ -45,9 +45,24 @@
           <img class="img_url" src="{{ post.image.url }}" alt="" />
           <div class="my-3 post">
             <div class="icon-wrapper">
-              <i class="bi bi-heart mx-2"></i>
+              {% if request.user in post.likes.all %}
+              <input type="hidden" class="post_likes" , value="yes" />
+              <i class="bi bi-heart-fill mx-2 like fill"></i>
+              <!-- check -->
+              {% else %}
+              <input type="hidden" class="post_likes" , value="no" />
+              <i class="bi bi-heart mx-2 like"></i>
+              <!-- check -->
+              {% endif %}
+
               <i class="bi bi-chat-left chat-icon"></i>
             </div>
+            <i class="no_likes">
+              {{ post.likes.count }} like{{ post.likes.count|pluralize }}
+            </i>
+            <i class="no_likes mx-2">
+              {{ post.comment.count}} comment{{ post.comment.count|pluralize }}
+            </i>
             <div class="comment-section hidden">
               <div class="comments">
                 <div class="comment">
