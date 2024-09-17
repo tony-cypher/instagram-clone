@@ -18,7 +18,6 @@ def feed(request):
         if user and content:
             comment = Comment.objects.create(post=post, posted_by=user, body=content)
             return JsonResponse({'user': comment.posted_by.username, 'content': comment.body, 'created_at': comment.created}, status=201)
-        #     Comment.objects.create(post=post, posted_by=user, body=content)
     comment_form = CommentForm()
     posts = Post.objects.all()
     logged_user = request.user

@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to add a new comment
     const addComment = async () => {
-      console.log("Start");
       const userId = userIdInput.value.trim();
       const commentText = commentInput.value.trim();
       const post_id = postId.value.trim();

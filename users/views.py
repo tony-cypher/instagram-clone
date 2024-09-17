@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
 from insta.models import Post
+from insta.forms import CommentForm
 
 # Create your views here.
 
@@ -24,11 +25,14 @@ def index(request, id):
     current_user = Profile.objects.get(id=id).user
     posts = Post.objects.filter(user=current_user)
     profile = Profile.objects.filter(user=current_user).first()
-    return render(request, 'users/index.html', {'posts':posts, 'profile':profile})
+    comment_form = CommentForm()
+    return render(request, 'users/index.html', {'posts':posts, 'profile':profile, 'comment_form': comment_form})
 
 def post_user(request, id):
     post = Post.objects.get(id=id)
     user = post.user
     posts = Post.objects.filter(user=user)
     profile = Profile.objects.filter(user=user).first()
-    return render(request, 'users/index.html', {'posts': posts, 'profile':profile})
+    comment_form = CommentForm()
+    print(comment_form)
+    return render(request, 'users/index.html', {'posts': posts, 'profile':profile, 'comment_form': comment_form})
