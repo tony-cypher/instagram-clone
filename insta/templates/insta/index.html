@@ -49,6 +49,7 @@
 
 <main id="main">
   <!-- ======= About Section ======= -->
+
   <section id="about" class="about col-lg-6">
     {% for post in posts %}
     <div class="container my-5">
@@ -57,6 +58,7 @@
         <a href="{% url 'post_user' post.id %}">{{ post.user.username }}</a>
         . 2h
       </div>
+
       <div class="container-fliud post-img">
         <img src="{{ post.image.url}}" alt="" />
       </div>
@@ -65,8 +67,13 @@
           <i class="bi bi-heart mx-2"></i>
           <i class="bi bi-chat-left chat-icon"></i>
         </div>
+
         <div class="comment-section hidden">
           <div class="comments">
+            <div class="comment">
+              <a href=""><i>{{ post.user }}</i></a>
+              <p>{{ post.title }}</p>
+            </div>
             {% for comment in post.comment.all %}
             <div class="comment">
               <a href="{% url 'profile' comment.posted_by.id %}"
@@ -76,17 +83,35 @@
             </div>
             {% endfor %}
           </div>
+
           <div class="comment-input">
             <input
-              type="text"
-              class="commentText"
-              placeholder="Add a comment..."
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="{{ csrf_token }}"
             />
+
+            {{ comment_form.body }}
+            <input
+              type="hidden"
+              class="userIdInput"
+              name="username"
+              ,
+              value="{{ request.user.id }}"
+            />
+            <input
+              type="hidden"
+              class="username"
+              name="username"
+              ,
+              value="{{ request.user }}"
+            />
+            <input type="hidden" class="post_id" , value="{{ post.id }}" />
             <button class="postComment">Post</button>
           </div>
         </div>
 
-        <p>{{ post.caption|truncatewords:8 }}</p>
+        <p>{{ post.title|truncatewords:8 }}</p>
       </div>
     </div>
     {% endfor %}
