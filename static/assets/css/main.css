@@ -499,3 +499,13 @@ section {
 .comment-input button:disabled {
   background-color: #b2dffc;
 }
+
+/* like color #b74e4e */
+.fill {
+  color: #b74e4e;
+}
+
+.no_likes {
+  font-size: 12px;
+  color: grey;
+}

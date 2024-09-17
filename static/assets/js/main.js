@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const postButton = post.querySelector(".postComment");
     const commentsContainer = post.querySelector(".comments");
     const postId = post.querySelector(".post_id");
+    // Like
+    const likeInput = post.querySelector(".like");
+    const postLikesInput = post.querySelector(".post_likes");
+    var likeButton = post.querySelector(".like");
 
     // Toggle visibility of the comment section for each post
     chatIcon.addEventListener("click", () => {
@@ -103,6 +107,33 @@ document.addEventListener("DOMContentLoaded", () => {
         addComment();
       }
     });
+
+    // Like Functionality
+    const likePost = async () => {
+      var postLikes = postLikesInput.value.trim();
+      if (postLikes === "yes") {
+        likeButton.classList.replace("bi-heart-fill", "bi-heart");
+        likeButton.classList.remove("fill");
+      } else {
+        likeButton.classList.replace("bi-heart", "bi-heart-fill");
+        likeButton.classList.add("fill");
+      }
+
+      const post_id = postId.value.trim();
+      try {
+        const response = await fetch(`/${post_id}/`);
+        if (response.ok) {
+          // Reload the page after successful comment post
+          location.reload();
+        } else {
+          throw new Error("Failed to post comment");
+        }
+      } catch (error) {
+        console.error("Error posting comment: ", error);
+      }
+    };
+
+    likeInput.addEventListener("click", likePost);
   });
 });
 

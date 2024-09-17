@@ -34,5 +34,4 @@ def post_user(request, id):
     posts = Post.objects.filter(user=user)
     profile = Profile.objects.filter(user=user).first()
     comment_form = CommentForm()
-    print(comment_form)
     return render(request, 'users/index.html', {'posts': posts, 'profile':profile, 'comment_form': comment_form})
