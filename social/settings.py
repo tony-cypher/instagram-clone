@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-+5uuh$hq-6gx)+--dg(-qk0q98j*ufp4oai3=-v^3-c)5obqa%
 DEBUG = True
 
 # '.vercel.app' for hosting
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -131,9 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [
-    BASE_DIR/'static',
-]
+
+STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
+
 
 # For image uploads
 MEDIA_URL = '/media/'
