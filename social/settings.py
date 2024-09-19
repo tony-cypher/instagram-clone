@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,7 @@ SECRET_KEY = "django-insecure-+5uuh$hq-6gx)+--dg(-qk0q98j*ufp4oai3=-v^3-c)5obqa%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# '.vercel.app' for hosting
 ALLOWED_HOSTS = []
 
 
@@ -77,11 +79,20 @@ WSGI_APPLICATION = "social.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# Local Database
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+# Production Database
+env = environ.Env()
+environ.Env.read_env()
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': env.db('DATABASE_URL', default='postgresql://postgres:QpoEwUPUWRAGAgowMkntlvWqOwNXHRTv@junction.proxy.rlwy.net:47929/railway')
 }
 
 
