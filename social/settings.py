@@ -80,20 +80,20 @@ WSGI_APPLICATION = "social.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # Local Database
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 # Production Database
-env = environ.Env()
-environ.Env.read_env()
+# env = environ.Env()
+# environ.Env.read_env()
 
-DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgresql://postgres:QpoEwUPUWRAGAgowMkntlvWqOwNXHRTv@junction.proxy.rlwy.net:47929/railway')
-}
+# DATABASES = {
+#     'default': env.db('DATABASE_URL', default='postgresql://postgres:QpoEwUPUWRAGAgowMkntlvWqOwNXHRTv@junction.proxy.rlwy.net:47929/railway')
+# }
 
 
 # Password validation
@@ -133,7 +133,6 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # For image uploads
