@@ -412,28 +412,6 @@ section {
   box-sizing: border-box;
 }
 
-/* body {
-  font-family: Arial, sans-serif;
-  background-color: #fafafa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */
-
-/* .icon-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-} */
-
-/* .chat-icon {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-} */
-
 .comment-section {
   width: 400px;
   background-color: #232527;
