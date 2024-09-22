@@ -1,117 +1,105 @@
 {% extends 'insta/base.html' %} {% load static %} {% block content %}
-<main id="main">
-  <div id="user">
-    <!--===================== PROFILE SECTION ========================-->
-    <div class="container user">
-      <div class="row">
-        <div class="col-lg-3 my-auto">
-          <img src="{{ request.user.profile.profile_img.url }}" alt="" />
+<!--===================== PROFILE SECTION ========================-->
+<header>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-image">
+        <img src="{{ request.user.profile.profile_img.url }}" class="profile-img" alt="">
+      </div>
+      <div class="profile-user-settings">
+
+        <h5 class="profile-user-name">{{ profile.user }} </h5>
+
+        <button class="btn profile-edit-btn">Follow</button>
+        <button class="btn profile-edit-btn">Message</button>
+
+        <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
+            aria-hidden="true"></i></button>
+
+      </div>
+      <div class="profile-stats">
+
+        <ul>
+          <li><span class="profile-stat-count">164</span> posts</li>
+          <li><span class="profile-stat-count">188</span> followers</li>
+          <li><span class="profile-stat-count">206</span> following</li>
+        </ul>
+
+      </div>
+      <div class="profile-bio">
+
+        <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit
+          📷✈️🏕️</p>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+<hr />
+
+<!---- ========================= POSTS SECTION ====================== -->
+<main>
+  <div class="container">
+    <div class="gallery">
+      {% for post in posts %}
+      <div class="gallery-item" tabindex="0">
+        <div>
+          <img class="gallery-image" src="{{ post.image.url }}" class="gallery-image" alt="" />
         </div>
-        <div class="col">
+        <div class="post comments-wrapper">
           <div>
-            <span
-              >{{ profile.user }}
-              <i class="bi bi-check-circle-fill mx-3 text-primary"></i
-            ></span>
-            <button class="btn btn-primary">Follow</button>
-            <button class="btn btn-dark mx-1">Message</button>
-            <button class="btn btn-dark">
-              <i class="bi bi-person-fill-add"></i>
-            </button>
-            <span><i class="bi bi-three-dots mx-1"></i></span>
+            {% if request.user in post.likes.all %}
+            <input type="hidden" class="post_likes" , value="yes" />
+            <i class="bi bi-heart-fill mx-2 like fill"></i>
+            <!-- check -->
+            {% else %}
+            <input type="hidden" class="post_likes" , value="no" />
+            <i class="bi bi-heart mx-2 like"></i>
+            <!-- check -->
+            {% endif %}
+
+            <i class="bi bi-chat-left chat-icon"></i>
           </div>
-          <div class="my-3 about">
-            <span>625 posts</span>
-            <span class="mx-4">1.5M followers</span>
-            <span>996 following</span>
-          </div>
-          <p>{{ request.user.username }} Lastname</p>
-          <p class="about">
-            Lifestyle | Fashion | Entertainment <br />
-            EnquiriesNeoakpofure@gmail.com <br />
-            Twitter - @NeoAkpofure <br />
-            All social links 👇👇👇<br />
-          </p>
-        </div>
-      </div>
-    </div>
-    <hr />
-
-    <!---- ========================= POSTS SECTION ====================== -->
-    <div class="container">
-      <div>
-        {% for post in posts %}
-        <div class="pt-5">
-          <img class="img_url" src="{{ post.image.url }}" alt="" />
-          <div class="my-3 post">
-            <div class="icon-wrapper">
-              {% if request.user in post.likes.all %}
-              <input type="hidden" class="post_likes" , value="yes" />
-              <i class="bi bi-heart-fill mx-2 like fill"></i>
-              <!-- check -->
-              {% else %}
-              <input type="hidden" class="post_likes" , value="no" />
-              <i class="bi bi-heart mx-2 like"></i>
-              <!-- check -->
-              {% endif %}
-
-              <i class="bi bi-chat-left chat-icon"></i>
-            </div>
-            <i class="no_likes">
-              {{ post.likes.count }} like{{ post.likes.count|pluralize }}
-            </i>
-            <i class="no_likes mx-2">
-              {{ post.comment.count}} comment{{ post.comment.count|pluralize }}
-            </i>
-            <div class="comment-section hidden">
-              <div class="comments">
-                <div class="comment">
-                  <a href=""><i>{{ post.user }}</i></a>
-                  <p>{{ post.title }}</p>
-                </div>
-                {% for comment in post.comment.all %}
-                <div class="comment">
-                  <a href="{% url 'profile' comment.posted_by.id %}"
-                    ><i>{{ comment.posted_by }}</i>
-                  </a>
-                  <p>{{ comment.body }}</p>
-                </div>
-                {% endfor %}
+          <i class="no_likes">
+            {{ post.likes.count }} like{{ post.likes.count|pluralize }}
+          </i>
+          <i class="no_likes mx-2">
+            {{ post.comment.count}} comment{{ post.comment.count|pluralize }}
+          </i>
+          <div class="comment-section hidden">
+            <div class="comments">
+              <div class="comment">
+                <a href=""><i>{{ post.user }}</i></a>
+                <p>{{ post.title }}</p>
               </div>
-
-              <div class="comment-input">
-                <input
-                  type="hidden"
-                  name="csrfmiddlewaretoken"
-                  value="{{ csrf_token }}"
-                />
-
-                {{ comment_form.body }}
-                <input
-                  type="hidden"
-                  class="userIdInput"
-                  name="username"
-                  ,
-                  value="{{ request.user.id }}"
-                />
-                <input
-                  type="hidden"
-                  class="username"
-                  name="username"
-                  ,
-                  value="{{ request.user }}"
-                />
-                <input type="hidden" class="post_id" , value="{{ post.id }}" />
-                <button class="postComment">Post</button>
+              {% for comment in post.comment.all %}
+              <div class="comment">
+                <a href="{% url 'profile' comment.posted_by.id %}"><i>{{ comment.posted_by }}</i>
+                </a>
+                <p>{{ comment.body }}</p>
               </div>
+              {% endfor %}
             </div>
 
-            <p>{{ post.title|truncatewords:8 }}</p>
+            <div class="comment-input">
+              <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
+              {{ comment_form.body }}
+              <input type="hidden" class="userIdInput" name="username" , value="{{ request.user.id }}" />
+              <input type="hidden" class="username" name="username" , value="{{ request.user }}" />
+              <input type="hidden" class="post_id" , value="{{ post.id }}" />
+              <button class="postComment">Post</button>
+            </div>
           </div>
+
+          <p>{{ post.title|truncatewords:8 }}</p>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
+    <div class="loader"></div>
   </div>
 </main>
 {% endblock %}

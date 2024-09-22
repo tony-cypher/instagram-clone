@@ -1,11 +1,32 @@
+:root {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: "Open Sans", sans-serif;
-  color: #fff;
-  background-color: black;
+  /* font-family: "Open Sans", sans-serif; */
+  /* color: #fff; */
+  /* background-color: black; */
+  margin: 0;
+  background: #fafafa;
+  color: #262626;
+  font-family: "Open Sans", Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding-bottom: 3rem;
 }
 
 a {
-  color: #fff;
+  color: #262626;
   text-decoration: none;
 }
 
@@ -14,10 +35,542 @@ a:hover {
   text-decoration: none;
 }
 
+/* Sidebar */
+
+img {
+  display: block;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
+  height: 100%;
+  padding: 40px 10px 30px 10px;
+  background: #ffffff;
+  border-right: 1px solid #dbdbdb;
+  transition: 0.3s;
+}
+
+.sidebar-header {
+  width: 100%;
+  margin-bottom: 44px;
+}
+
+.logo-icon {
+  display: none;
+  font-size: 28px;
+  height: 35px;
+  width: 51px;
+  text-align: center;
+}
+
+.logo-img {
+  margin-left: 14px;
+  height: 32px;
+}
+
+.sidebar .a_icon {
+  height: 60px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sidebar .a_icon > span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 24px;
+  line-height: 1;
+}
+
+.sidebar .a_icon:hover > span {
+  background: #f2f2f2;
+}
+
+.sidebar .a_icon:hover > span :is(i, img) {
+  scale: 1.05;
+}
+
+.sidebar .a_icon > span > span {
+  transition: 0.3s;
+}
+
+@media (width < 1100px) {
+  .logo-img {
+    display: none;
+  }
+
+  .logo-icon {
+    display: block;
+  }
+
+  .sidebar {
+    width: 72px;
+  }
+
+  .sidebar .a_icon > span {
+    width: 50px;
+  }
+
+  .sidebar .a_icon > span > span {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.sidebar .a_icon i {
+  position: relative;
+  font-size: 28px;
+  transition: 0.2s;
+}
+
+.sidebar .a_icon img {
+  width: 36px;
+  height: 36px;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.sidebar .a_icon i > span {
+  display: grid;
+  place-items: center;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 10px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  border: 1px solid #ffffff;
+  background: #ff2f40;
+  color: #f9f9f9;
+  font-size: 12px;
+  font-family: BlinkMacSystemFont;
+  font-style: normal;
+}
+
+.sidebar .a_icon i > em {
+  display: block;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 2px;
+  right: -1px;
+  border: 1px solid #ffffff;
+  background: #ff2f40;
+  color: #f9f9f9;
+  font-size: 12px;
+  font-family: BlinkMacSystemFont;
+  font-style: normal;
+}
+
+.sidebar .a_icon span {
+  font-size: 17px;
+}
+
+.sidebar > nav {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar > nav .a_icon:last-child {
+  margin-top: auto;
+}
+
+/* POSTS */
+.container {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 5rem;
+}
+
+.btn {
+  display: inline-block;
+  font: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: 0.5rem auto #4d90fe;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Profile Section */
+
+.profile {
+  padding: 5rem 0;
+}
+
+.profile::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.profile-image {
+  float: left;
+  width: calc(33.333% - 1rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+}
+
+.profile-image img {
+  border-radius: 50%;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+  float: left;
+  width: calc(66.666% - 2rem);
+}
+
+.profile-user-settings {
+  margin-top: 1.1rem;
+}
+
+.profile-user-name {
+  display: inline-block;
+  font-size: 3.2rem;
+  font-weight: 300;
+}
+
+.profile-edit-btn {
+  color: #fff;
+  background-color: #212529;
+  font-size: 1.5rem;
+  line-height: 2.8;
+  border: 0.1rem solid #dbdbdb;
+  border-radius: 0.9rem;
+  padding: 0 1.5rem;
+  margin-left: 2rem;
+}
+
+.profile-edit-btn:hover {
+  background-color: #424649;
+}
+
+.profile-settings-btn {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+.profile-stats {
+  margin-top: 2.3rem;
+}
+
+.profile-stats li {
+  display: inline-block;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin-right: 4rem;
+  cursor: pointer;
+}
+
+.profile-stats li:last-of-type {
+  margin-right: 0;
+}
+
+.profile-bio {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 2.3rem;
+}
+
+.profile-real-name,
+.profile-stat-count,
+.profile-edit-btn {
+  font-weight: 600;
+}
+
+/* Gallery Section */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem -1rem;
+  padding-bottom: 3rem;
+}
+
+.gallery-item {
+  position: relative;
+  flex: 1 0 22rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.gallery-item:hover .gallery-item-info,
+.gallery-item:focus .gallery-item-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item-info {
+  display: none;
+}
+
+.gallery-item-info li {
+  display: inline-block;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.gallery-item-likes {
+  margin-right: 2.2rem;
+}
+
+.gallery-item-type {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.5rem;
+  text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.fa-clone,
+.fa-comment {
+  transform: rotateY(180deg);
+}
+
+.gallery-image {
+  width: 236px;
+  height: 236px;
+  object-fit: cover;
+}
+
+.comments-wrapper {
+  font-size: large;
+  padding-top: 10px;
+}
+
+.mx-2 {
+  margin: 0 5px;
+}
+
+.profile-img {
+  height: 152px;
+  width: 152px;
+}
+
+/* Loader */
+
+.loader {
+  width: 5rem;
+  height: 5rem;
+  border: 0.6rem solid #999;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: loader 500ms linear infinite;
+}
+
+/* Media Query */
+
+@media screen and (max-width: 640px) {
+  .profile {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4rem 0;
+  }
+
+  .profile::after {
+    display: none;
+  }
+
+  .profile-image,
+  .profile-user-settings,
+  .profile-bio,
+  .profile-stats {
+    float: none;
+    width: auto;
+  }
+
+  .profile-image img {
+    width: 7.7rem;
+  }
+
+  .profile-user-settings {
+    flex-basis: calc(100% - 10.7rem);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .profile-user-name {
+    font-size: 2.2rem;
+  }
+
+  .profile-edit-btn {
+    order: 1;
+    padding: 0;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .profile-edit-btn {
+    margin-left: 0;
+  }
+
+  .profile-bio {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+  }
+
+  .profile-edit-btn,
+  .profile-bio,
+  .profile-stats {
+    flex-basis: 100%;
+  }
+
+  .profile-stats {
+    order: 1;
+    margin-top: 1.5rem;
+  }
+
+  .profile-stats ul {
+    display: flex;
+    text-align: center;
+    padding: 1.2rem 0;
+    border-top: 0.1rem solid #dadada;
+    border-bottom: 0.1rem solid #dadada;
+  }
+
+  .profile-stats li {
+    font-size: 1.4rem;
+    flex: 1;
+    margin: 0;
+  }
+
+  .profile-stat-count {
+    display: block;
+  }
+
+  .profile-img {
+    height: 72px;
+    width: 72px;
+  }
+
+  .gallery-image {
+    width: 353px;
+    height: 353px;
+    object-fit: cover;
+  }
+}
+
+/* Spinner Animation */
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*
+The following code will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
+
+*/
+
+@supports (display: grid) {
+  .profile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 3rem;
+    align-items: center;
+  }
+
+  .profile-image {
+    grid-row: 1 / -1;
+  }
+
+  .gallery {
+    padding-left: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    grid-gap: 2rem;
+  }
+
+  .profile-image,
+  .profile-user-settings,
+  .profile-stats,
+  .profile-bio,
+  .gallery-item,
+  .gallery {
+    width: auto;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .profile {
+      padding-left: 50px;
+      grid-template-columns: auto 1fr;
+      grid-row-gap: 1.5rem;
+    }
+
+    .profile-image {
+      grid-row: 1 / 2;
+    }
+
+    .profile-user-settings {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 1rem;
+    }
+
+    .profile-edit-btn,
+    .profile-stats,
+    .profile-bio {
+      grid-column: 1 / -1;
+    }
+
+    .profile-user-settings,
+    .profile-edit-btn,
+    .profile-settings-btn,
+    .profile-bio,
+    .profile-stats {
+      margin: 0;
+    }
+  }
+}
 /*--------------------------------------------------------------
   # Header
   --------------------------------------------------------------*/
-#header {
+/* #header {
   position: fixed;
   top: 0;
   left: 0;
@@ -61,7 +614,7 @@ a:hover {
   }
 
   #side-header {
-    left: -350px;
+    left: -400px;
   }
 
   #about {
@@ -80,24 +633,24 @@ a:hover {
     margin: 0;
     padding-left: 30px;
   }
-}
+} */
 
 /*--------------------------------------------------------------
   # Navigation Menu DONE
   --------------------------------------------------------------*/
 
-.nav-menu * {
+/* .nav-menu * {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+} */
 /* 
 .nav-menu > ul > li {
   position: relative;
   white-space: nowrap;
 } */
 
-.nav-menu a,
+/* .nav-menu a,
 .nav-menu a:focus {
   color: #a8a9b4;
   padding: 12px 15px;
@@ -125,12 +678,12 @@ a:hover {
 .nav-menu .active:focus i,
 .nav-menu li:hover > a i {
   color: #fff;
-}
+} */
 
 /* -------------------------------------------------------------
   # Side Header DONE AND SUGGEST
   --------------------------------------------------------------*/
-#side-header {
+/* #side-header {
   position: fixed;
   top: 0;
   right: 0;
@@ -138,6 +691,7 @@ a:hover {
   width: 400px;
   padding: 0 15px;
   background: black;
+  background-color: #fafafa;
   font-size: 12px;
   color: #138374f3;
 }
@@ -158,7 +712,6 @@ a:hover {
   text-align: center;
   width: 36px;
   height: 45px;
-  /* transition: 0.3s; */
 }
 
 .suggest {
@@ -173,12 +726,12 @@ a:hover {
 .suggested {
   font-weight: bold;
   font-size: 13px;
-}
+} */
 
 /*--------------------------------------------------------------
   # Sign in and log DONE
   --------------------------------------------------------------*/
-#signin {
+/* #signin {
   background: #fff;
   padding-top: 30px;
   color: black;
@@ -277,12 +830,12 @@ a:hover {
   margin-left: 40px;
   font-size: 13px;
   font-weight: bold;
-}
+} */
 
 /*--------------------------------------------------------------
   # Sections General
   --------------------------------------------------------------*/
-section {
+/* section {
   padding: 60px 0;
   overflow: hidden;
 }
@@ -317,13 +870,13 @@ section {
 
 .section-title p {
   margin-bottom: 0;
-}
+} */
 
 /*--------------------------------------------------------------
   # About
   --------------------------------------------------------------*/
 
-.about .profile img {
+/* .about .profile img {
   margin-right: 6px;
   border-radius: 50%;
   width: 35px;
@@ -365,22 +918,22 @@ section {
 
 .about .content p:last-child {
   margin-bottom: 0;
-}
+} */
 
 /*------------------------------------------------------------
 # PROFILE
 -------------------------------------------------------------*/
-#profile .profile img {
+/* #profile .profile img {
   margin-right: 6px;
   border-radius: 50%;
   width: 150px;
   height: 150px;
-}
+} */
 
 /*------------------------------------------------------------
 # USER DONE
 -------------------------------------------------------------*/
-#user .user img {
+/* #user .user img {
   margin-right: 6px;
   border-radius: 50%;
   width: 150px;
@@ -393,17 +946,17 @@ section {
 
 .user {
   padding: 40px;
-}
+} */
 
 /* CREATE POST */
-.create-form {
+/* .create-form {
   margin-left: 200px;
 }
 
 .img_url {
   height: 300px;
   width: 300px;
-}
+} */
 
 /* ----------------------- Comments ------------------------------*/
 * {
@@ -414,7 +967,8 @@ section {
 
 .comment-section {
   width: 400px;
-  background-color: #232527;
+  background-color: #fafafa;
+  /* background-color: #232527; */
   /* border: 1px solid #dbdbdb; */
   padding: 15px;
   border-radius: 8px;
