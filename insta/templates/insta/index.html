@@ -1,9 +1,9 @@
 {% extends 'insta/base.html' %} {% load static %} {% block content %}
 <!-- side header -->
-<div id="side-header">
-  <div class="d-flex flex-column">
-    <!-- {% static 'assets/img/profile-img.jpg' %} -->
-    <ul class="suggest-entry list-unstyled">
+<!-- <div id="side-header">
+  <div class="d-flex flex-column"> -->
+<!-- {% static 'assets/img/profile-img.jpg' %} -->
+<!-- <ul class="suggest-entry list-unstyled">
       <li>
         <div class="d-flex align-items-center my-4">
           <img src="#" alt="" class="img-fluid me-3" />
@@ -42,96 +42,79 @@
         </div>
       </li>
       {% endif %} {% endfor %}
-    </ul>
-  </div>
-</div>
+    </ul> -->
+<!-- </div>
+</div> -->
 <!-- END SIDEBAR -->
 
-<main id="main">
-  <!-- ======= About Section ======= -->
+<main>
+  <div class="container">
+    <div class="gallery">
+      {% for post in posts %}
+      <div class="gallery-item" tabindex="0">
+        <!-- <div class="profile my-3">
+          <img src="{{ post.user.profile.profile_img.url }}" alt="" />
+          <a href="{% url 'post_user' post.id %}">{{ post.user.username }}</a>
+          . 2h
+        </div> -->
 
-  <section id="about" class="about col-lg-6">
-    {% for post in posts %}
-    <div class="container my-5">
-      <div class="profile my-3">
-        <img src="{{ post.user.profile.profile_img.url }}" alt="" />
-        <a href="{% url 'post_user' post.id %}">{{ post.user.username }}</a>
-        . 2h
-      </div>
-
-      <div class="container-fliud post-img">
-        <img src="{{ post.image.url}}" alt="" />
-      </div>
-      <div class="my-3 post">
-        <div class="icon-wrapper">
-          {% if request.user in post.likes.all %}
-          <input type="hidden" class="post_likes" , value="yes" />
-          <i class="bi bi-heart-fill mx-2 like fill"></i>
-          <!-- check -->
-          {% else %}
-          <input type="hidden" class="post_likes" , value="no" />
-          <i class="bi bi-heart mx-2 like"></i>
-          <!-- check -->
-          {% endif %}
-
-          <i class="bi bi-chat-left chat-icon"></i>
+        <div>
+          <img class="gallery-image" src="{{ post.image.url }}" alt="" />
         </div>
-        <i class="no_likes">
-          {{ post.likes.count }} like{{ post.likes.count|pluralize }}
-        </i>
-        <i class="no_likes mx-2">
-          {{ post.comment.count}} comment{{ post.comment.count|pluralize }}
-        </i>
+        <div class="post comments-wrapper">
+          <div>
+            {% if request.user in post.likes.all %}
+            <input type="hidden" class="post_likes" , value="yes" />
+            <i class="bi bi-heart-fill mx-2 like fill"></i>
+            <!-- check -->
+            {% else %}
+            <input type="hidden" class="post_likes" , value="no" />
+            <i class="bi bi-heart mx-2 like"></i>
+            <!-- check -->
+            {% endif %}
 
-        <div class="comment-section hidden">
-          <div class="comments">
-            <div class="comment">
-              <a href="{% url 'post_user' post.id %}"><i>{{ post.user }}</i></a>
-              <p>{{ post.title }}</p>
+            <i class="bi bi-chat-left chat-icon"></i>
+          </div>
+          <i class="no_likes">
+            {{ post.likes.count }} like{{ post.likes.count|pluralize }}
+          </i>
+          <i class="no_likes mx-2">
+            {{ post.comment.count}} comment{{ post.comment.count|pluralize }}
+          </i>
+
+          <div class="comment-section hidden">
+            <div class="comments">
+              <div class="comment">
+                <a href="{% url 'post_user' post.id %}"><i>{{ post.user }}</i></a>
+                <p>{{ post.title }}</p>
+              </div>
+              {% for comment in post.comment.all %}
+              <div class="comment">
+                <a href="{% url 'profile' comment.posted_by.id %}"><i>{{ comment.posted_by }}</i>
+                </a>
+                <p>{{ comment.body }}</p>
+              </div>
+              {% endfor %}
             </div>
-            {% for comment in post.comment.all %}
-            <div class="comment">
-              <a href="{% url 'profile' comment.posted_by.id %}"
-                ><i>{{ comment.posted_by }}</i>
-              </a>
-              <p>{{ comment.body }}</p>
+
+            <div class="comment-input">
+              <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+
+              {{ comment_form.body }}
+              <input type="hidden" class="userIdInput" name="username" , value="{{ request.user.id }}" />
+              <input type="hidden" class="username" name="username" , value="{{ request.user }}" />
+              <input type="hidden" class="post_id" , value="{{ post.id }}" />
+              <button class="postComment">Post</button>
             </div>
-            {% endfor %}
           </div>
 
-          <div class="comment-input">
-            <input
-              type="hidden"
-              name="csrfmiddlewaretoken"
-              value="{{ csrf_token }}"
-            />
-
-            {{ comment_form.body }}
-            <input
-              type="hidden"
-              class="userIdInput"
-              name="username"
-              ,
-              value="{{ request.user.id }}"
-            />
-            <input
-              type="hidden"
-              class="username"
-              name="username"
-              ,
-              value="{{ request.user }}"
-            />
-            <input type="hidden" class="post_id" , value="{{ post.id }}" />
-            <button class="postComment">Post</button>
-          </div>
+          <p>{{ post.title }}</p>
         </div>
-
-        <p>{{ post.title }}</p>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </section>
-  <!-- End About Section -->
+    <div class="loader"></div>
+  </div>
 </main>
 
 {% endblock %}
