@@ -52,12 +52,9 @@
     <div class="gallery">
       {% for post in posts %}
       <div class="gallery-item" tabindex="0">
-        <!-- <div class="profile my-3">
-          <img src="{{ post.user.profile.profile_img.url }}" alt="" />
-          <a href="{% url 'post_user' post.id %}">{{ post.user.username }}</a>
-          . 2h
-        </div> -->
-
+        <span class="post_profile"><img src="{{ post.user.profile.profile_img.url }}" alt="">
+          <a href="{% url 'post_user' post.id %}"><i>{{ post.user.username }}</i></a>
+        </span>
         <div>
           <img class="gallery-image" src="{{ post.image.url }}" alt="" />
         </div>
