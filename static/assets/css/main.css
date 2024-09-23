@@ -366,6 +366,7 @@ img {
 }
 
 .gallery-image {
+  border-radius: 5%;
   width: 236px;
   height: 236px;
   object-fit: cover;
@@ -725,4 +726,91 @@ Remove or comment-out the code block below to see how the browser will fall-back
 .no_likes {
   font-size: 12px;
   color: grey;
+}
+
+/* Create Post */
+
+#wrapper {
+  width: 600px;
+  margin: 48px auto;
+  font-family: "Helvetica", "Arial", "Verdana", "sans-serif";
+  line-height: 24px;
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  #wrapper {
+    margin-left: 100px;
+    width: 350px;
+  }
+}
+
+#wrapper {
+  h2 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  input[type="text"] {
+    height: 36px;
+    width: 100%;
+    margin-bottom: 18px;
+    display: block;
+    font-size: 14px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: #333;
+    border: 1px solid #d5d5d5;
+  }
+
+  input[type="submit"] {
+    background: #262626;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 12px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    padding: 0 10px 2px 10px;
+    line-height: 34px;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  input[type="submit"]:hover {
+    background: #424649;
+  }
+
+  label {
+    margin-bottom: 6px;
+    display: block;
+    font-size: 14px;
+  }
+
+  fieldset,
+  input[type="file"] {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* margin-top: 40px; */
+    padding: 12px 20px;
+    box-shadow: 0 2px 2px 0px #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+
+  fieldset {
+    padding: 12px 20px 24px 20px;
+    background: #eee;
+    margin-top: 40px;
+  }
+
+  input:focus,
+  textarea:focus {
+    background: #fffac2;
+    outline: none;
+  }
 }
