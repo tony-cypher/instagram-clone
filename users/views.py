@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from .forms import *
-from .models import *
+from django.shortcuts import render, redirect
+from .forms import RegistrationForm
+from .models import Profile
 from insta.models import Post
 from insta.forms import CommentForm
 
@@ -35,3 +35,10 @@ def post_user(request, id):
     profile = Profile.objects.filter(user=user).first()
     comment_form = CommentForm()
     return render(request, 'users/index.html', {'posts': posts, 'profile':profile, 'comment_form': comment_form})
+
+@login_required
+def post_delete(request, id):
+    post = Post.objects.get(id=id)
+    post_user_id = post.user.profile.id
+    post.delete()
+    return redirect('profile', id=post_user_id)

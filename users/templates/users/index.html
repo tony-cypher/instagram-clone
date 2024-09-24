@@ -61,6 +61,9 @@
             {% endif %}
 
             <i class="bi bi-chat-left chat-icon"></i>
+            {% if request.user == post.user %}
+            <a href="{% url 'delete' post.id %}"><i class="bi bi-x-circle mx-2"></i></a>
+            {% endif %}
           </div>
           <i class="no_likes">
             {{ post.likes.count }} like{{ post.likes.count|pluralize }}
