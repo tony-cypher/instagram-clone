@@ -37,7 +37,6 @@
     </div>
   </div>
 </header>
-<hr />
 
 <!---- ========================= POSTS SECTION ====================== -->
 <main>
@@ -62,7 +61,12 @@
 
             <i class="bi bi-chat-left chat-icon"></i>
             {% if request.user == post.user %}
-            <a href="{% url 'delete' post.id %}"><i class="bi bi-x-circle mx-2"></i></a>
+            <a href="#"><i class="bi bi-x-circle mx-2"></i></a>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="right"
+              data-bs-custom-class="custom-popover" data-bs-title="Custom popover"
+              data-bs-content="This popover is themed via CSS variables.">
+              Custom popover
+            </button>
             {% endif %}
           </div>
           <i class="no_likes">
