@@ -2,10 +2,9 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
 from django.http import JsonResponse
-from .models import *
-from .forms import *
+from .models import Post, Comment
+from .forms import PostCreateForm, CommentForm
 from users.models import Profile
 # Create your views here.
 

@@ -40,5 +40,6 @@ def post_user(request, id):
 def post_delete(request, id):
     post = Post.objects.get(id=id)
     post_user_id = post.user.profile.id
-    post.delete()
+    if request.user == post.user:
+        post.delete()
     return redirect('profile', id=post_user_id)
