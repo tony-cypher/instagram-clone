@@ -1,27 +1,26 @@
-{% extends 'users/register.html' %} {% load static %} {% block content %}
-<form action="" method="POST" class="form login">
-  {% load widget_tweaks %} {% csrf_token %}
-  <!-- username -->
-  <div class="form__field">
-    <label for="id_username">
-      <i class="bi bi-person-fill icon"></i>
-      <span class="hidden">Username</span></label>
-    {{ form.username |add_class:"form__input"|attr:"placeholder:Username" }}
+{% extends 'users/register.html' %} {% block content %}
+<div class="login">
+  <h1><img src="https://i.imgur.com/wvLiKam.png" width="200px" height="68px"></h1>
+
+  <form action="" method="POST">
+    {% load widget_tweaks %} {% csrf_token %}
+    {{ form.username |attr:"placeholder:Phone number, username, or email" }}
+    {{ form.password |attr:"placeholder:Password" }}
+    <input type="submit" value="Log In" /><br>
+  </form>
+
+  <div class="divider"><b>OR</b></div>
+
+  <div class="fbwrapper">
+    <div class="fb"><a href="https://facebook.com"><img src="https://i.imgur.com/exksovo.png"> Log in with
+        Facebook</a></div>
   </div>
 
-  <div class="form__field">
-    <label for="id_password">
-      <i class="bi bi-lock-fill icon"></i><span class="hidden">Password</span></label>
-    {{ form.password |add_class:"form__input"|attr:"placeholder:Password" }}
+  <div class="forgotwrapper">
+    <div class="forgot"><a href="https://instagram.com">Forgot password?</a></div>
   </div>
-
-  <div class="form__field">
-    <input type="submit" value="Sign In" />
-  </div>
-</form>
-
-<p class="text--center">
-  Need an account? <a href="{% url 'register' %}">Sign up now</a>
-  <i class="bi bi-arrow-right-square-fill"></i>
-</p>
+</div>
+<div class="infobox">
+  <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+</div>
 {% endblock %}
