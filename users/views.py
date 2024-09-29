@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 from .models import Profile
@@ -15,10 +16,11 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password1'])
             new_user.save()
             Profile.objects.create(user=new_user)
-            return redirect('home')
-    else:
-        user_form = RegistrationForm()
-        return render(request, 'users/register.html', {'user_form':user_form})
+            if new_user is not None:
+                login(request, new_user)
+                return redirect('home')
+    user_form = RegistrationForm()
+    return render(request, 'users/register.html', {'user_form':user_form})
 
 @login_required
 def index(request, id):
