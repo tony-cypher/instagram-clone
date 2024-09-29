@@ -18,6 +18,10 @@ body {
   text-align: center;
   user-select: none;
 }
+.login p {
+  font-size: 13px;
+  text-align: center;
+}
 input[type="password"],
 input[type="email"],
 input[type="text"] {

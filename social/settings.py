@@ -131,9 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "/static/"
-#STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
-
 
 # For image uploads
 MEDIA_URL = '/media/'
@@ -147,3 +146,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
+
+# for sending reset link of email to the terminal
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
